@@ -1,4 +1,4 @@
-const apiKey = "AIzaSyC7GNWirh640Za249NALGPHjJzcQsG9yWk";
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
 import { GoogleGenAI } from '@google/genai';
 
@@ -8,6 +8,11 @@ export default async function main(userInput) {
     if (!userInput || userInput.trim() === '') {
         console.log('Empty input');
         return;
+    }
+
+    if (!apiKey) {
+        console.error('API key not found in environment variables');
+        return 'Error: API key not configured. Please check your environment setup.';
     }
 
     try {
