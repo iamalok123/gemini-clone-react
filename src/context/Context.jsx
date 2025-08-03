@@ -9,7 +9,7 @@ export const Context = createContext();
 const ContextProvider = (props) => {
     const [input , setInput] = useState("")
     const [recentPrompt , setRecentPrompt] = useState("")
-    const [prevPrompts , setPrevPrompts] = useState("")
+    const [prevPrompts , setPrevPrompts] = useState([])
     const [showResult , setShowResult] = useState(false)
     const [loading , setLoading] = useState(false) 
     const [resultData , setResultData] = useState("")
@@ -20,14 +20,31 @@ const ContextProvider = (props) => {
         },75 * index)
     }
 
-    const onSent = async (userInput) => {
+    const newChat = () => {
+        setLoading(false) ;
+        setShowResult(false) ;
+    }
+
+    const onSent = async (userInput, addToHistory = true) => {
+        const promptToSend = userInput || input;
+        
+        if (!promptToSend || promptToSend.trim() === '') {
+            return;
+        }
+        
         setResultData("")
         setLoading(true)
         setShowResult(true)
-        setRecentPrompt(input)
-        const response = await main(input)
+        
+        if (addToHistory) {
+            setPrevPrompts(prev => [...prev , promptToSend])
+        }
+        setRecentPrompt(promptToSend)
+        
+        const response = await main(promptToSend)
+        
         let responseArray = response.split("**") ;
-        let newResponse ;
+        let newResponse = "" ;
         for(let i=0 ; i< responseArray.length ; i++){
             if(i === 0 || i%2 != 1){
                 newResponse += responseArray[i] ;
@@ -45,19 +62,26 @@ const ContextProvider = (props) => {
         setInput("")
     }
 
+    const loadPreviousPrompt = async (prompt) => {
+        setRecentPrompt(prompt)
+        await onSent(prompt, false) // Don't add to history again
+    }
+
     // onSent("what is react js ?")
 
     const contextValue = {
         prevPrompts,
         setPrevPrompts ,
         onSent,
+        loadPreviousPrompt,
         recentPrompt,
         setRecentPrompt,
         showResult,
         loading,
         resultData,
         input,
-        setInput
+        setInput,
+        newChat
     }
 
     return (
