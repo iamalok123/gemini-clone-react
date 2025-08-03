@@ -77,10 +77,10 @@ const Main = () => {
                         <div>
                             <img src={assets.gallery_icon} alt="gallery_icon" />
                             <img src={assets.mic_icon} alt="" />
-                            <img 
+                            {input ? <img 
                                 onClick={() => onSent()} 
                                 src={assets.send_icon} alt="" 
-                            />
+                            /> : null}
                         </div>
                         
                     </div>
