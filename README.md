@@ -2,17 +2,18 @@
 
 A modern, responsive React application that replicates Google's Gemini AI interface with advanced features including code formatting, markdown support, and real-time AI interactions.
 
+
+
 ![Gemini Clone](https://img.shields.io/badge/React-18.0.0-blue)
 ![Gemini Clone](https://img.shields.io/badge/Vite-5.0.0-purple)
 ![Gemini Clone](https://img.shields.io/badge/Google-Gemini_API-orange)
 
 ## 🖼️ Screenshots
-
+![Preview](https://github.com/iamalok123/gemini-clone-react/blob/4c0acb77296836eacbeef757312be5a3688ad540/Screenshot%202025-08-03%20132833.png)
 
 ## 📋 Table of Contents
 
 - [Features](#-features)
-- [Screenshots](#-screenshots)
 - [Tech Stack](#-tech-stack)
 - [Prerequisites](#-prerequisites)
 - [Installation](#-installation)
