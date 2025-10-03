@@ -3,7 +3,7 @@
 A modern, responsive React application that replicates Google's Gemini AI interface with advanced features including code formatting, markdown support, and real-time AI interactions.
 
 ## Live Preview
-[Gemini Clone]https://google-gemini-v69.vercel.app/)
+[Gemini Clone](https://google-gemini-v69.vercel.app/)
 
 
 ## 🖼️ Screenshot
